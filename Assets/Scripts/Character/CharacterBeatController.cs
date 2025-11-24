@@ -6,7 +6,12 @@ public class CharacterBeatController : MonoBehaviour
 {
     [SerializeField, Range(0f, 100f)] protected int   m_maxLife;
 
+<<<<<<< Updated upstream
     [SerializeField, Range(0f, 100f)] protected int   m_damagePerHit;
+=======
+    [SerializeField, Range(0f, 100f)]
+    public int   m_damagePerHit;
+>>>>>>> Stashed changes
 
     [SerializeField, Range(0f, 3f)] protected float m_maxSpeedX;
 
@@ -20,9 +25,17 @@ public class CharacterBeatController : MonoBehaviour
 
     [SerializeField] protected Transform m_bottomAnchor;
 
+<<<<<<< Updated upstream
     [SerializeField] protected Vector2 m_hitSize;
 
     [SerializeField] protected Transform m_hitAnchor;
+=======
+    [SerializeField]
+    public Vector2   m_hitSize;
+
+    [SerializeField]
+    public Transform m_hitAnchor;
+>>>>>>> Stashed changes
 
     [SerializeField] protected Transform m_topLimit;
 

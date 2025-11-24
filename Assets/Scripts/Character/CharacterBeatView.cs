@@ -8,14 +8,14 @@ using UnityEngine;
 
 public class CharacterBeatView : MonoBehaviour
 {
-    public Sprite      m_face;
-    public string      m_name;
+    public Sprite m_face;
+    public string m_name;
 
-    private Animator   m_animator;
+    private Animator m_animator;
 
     private void Awake()
     {
-        m_animator       = GetComponent<Animator>();
+        m_animator = GetComponent<Animator>();
     }
 
     public void ChangeAnimatorState  (string variable, int i) 

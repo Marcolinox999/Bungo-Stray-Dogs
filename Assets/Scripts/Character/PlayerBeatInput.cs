@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PlayerBeatInput : MonoBehaviour
 {
-    [SerializeField]
-    private KeyCode m_jumpButton;
+    [SerializeField] private KeyCode m_jumpButton;
 
-    [SerializeField]
-    private KeyCode m_attackButton;
+    [SerializeField] private KeyCode m_attackButton;
 
     private PlayerBeatController m_mainCharacter;
-    private Vector2              m_movementVector;
+    private Vector2 m_movementVector;
 
     void Start ()
     {

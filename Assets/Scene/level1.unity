@@ -569,9 +569,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
+      propertyPath: m_topLimit
+      value: 
+      objectReference: {fileID: 2134673739}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
       propertyPath: m_hitAnchor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1534298417}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_leftLimit
+      value: 
+      objectReference: {fileID: 1291667515}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_rightLimit
+      value: 
+      objectReference: {fileID: 1499820596}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_bottomLimit
+      value: 
+      objectReference: {fileID: 2144889255}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_bottomAnchor
+      value: 
+      objectReference: {fileID: 2033601988}
     - target: {fileID: 5271433855821122643, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
       propertyPath: m_Name
@@ -1982,6 +2007,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1534298417 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5271433857313107200, guid: b90c3bd215849504f9603925a97a4caa,
+    type: 3}
+  m_PrefabInstance: {fileID: 500315176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1824874406
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2317,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &2033601988 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5271433855424460422, guid: b90c3bd215849504f9603925a97a4caa,
+    type: 3}
+  m_PrefabInstance: {fileID: 500315176}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2071188738
 GameObject:
   m_ObjectHideFlags: 0

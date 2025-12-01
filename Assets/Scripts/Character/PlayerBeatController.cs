@@ -74,8 +74,8 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
     {
         if (m_playerState == Character_State.IDLE || m_playerState == Character_State.WALK)
         {
-            m_desiredJump = true;
             m_playerState = Character_State.JUMP;
+            m_desiredJump = true;
 		}
     }
 

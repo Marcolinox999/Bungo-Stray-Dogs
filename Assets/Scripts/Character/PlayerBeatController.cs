@@ -26,7 +26,7 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
     [SerializeField, Range(0f, 3f)]
     protected float m_timeToFinishHurtAnimation;
 
-    private void Awake                () 
+    private void Awake() 
 	{
         m_rigidBody              = GetComponent<Rigidbody2D> ();
 		m_mainCharacterAnimation = GetComponent<CharacterBeatView>();
@@ -37,7 +37,7 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         m_playerState            = Character_State.IDLE;
 	}
 
-    public void  MoveAction           (Vector2 movementVector) 
+    public void MoveAction (Vector2 movementVector) 
 	{
         // Movement
         m_movementVector = Vector2.ClampMagnitude(movementVector, 1f);
@@ -70,7 +70,7 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         }
 	}
     
-    public void  JumpAction           ()
+    public void JumpAction()
     {
         if (m_playerState == Character_State.IDLE || m_playerState == Character_State.WALK)
         {
@@ -79,11 +79,11 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
 		}
     }
 
-    public void  AttackAction         () 
+    public void AttackAction () 
 	{
         if (m_playerState == Character_State.IDLE || m_playerState == Character_State.WALK)
         {
-            m_playerState        = Character_State.ATTACK;
+            m_playerState = Character_State.ATTACK;
             m_rigidBody.linearVelocity = Vector2.zero; 
 			m_mainCharacterAnimation.ChangeAnimatorState ("attack", 1);
 
@@ -101,7 +101,7 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         }
 	}
 
-    public void  HitByEnemy           (float damage, CharacterBeatController player)
+    public void HitByEnemy (float damage, CharacterBeatController player)
     {
         if (m_playerState == Character_State.ATTACK)
         {
@@ -145,54 +145,57 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         m_playerState = Character_State.IDLE;
 	}
 
-    private IEnumerator FinishHurtAnimationState  () 
+    private IEnumerator FinishHurtAnimationState() 
 	{
         yield return new WaitForSeconds (m_timeToFinishHurtAnimation); 
         m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 0);
         m_playerState = Character_State.IDLE;
 	}
 
-    private void SetInGround          () 
+    private void SetInGround() 
 	{
         m_playerState            = Character_State.IDLE;
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 0); 
         m_rigidBody.gravityScale = 0; 
 		m_rigidBody.linearVelocity     = new Vector2 (m_rigidBody.linearVelocity.x, 0);
         transform.position       = new Vector2 (transform.position.x, m_floorLevel);
-		m_floorLevel             = float.MinValue;
+		m_floorLevel= float.MinValue; //????
         m_mainCharacterAnimation.ChangeAnimatorState ("fall", 0);
 	}
 
-    private void Jump                 ()
+    private void Jump()
     {
-		m_rigidBody.gravityScale = 1; 
+        m_floorLevel = transform.position.y - 0.00001f;
+		m_rigidBody.gravityScale = 1;
         m_velocity.y += Mathf.Sqrt(-2f * Physics.gravity.y * m_jumpHeight);
-		m_floorLevel             = transform.position.y - 0.00001f;
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 0); 
 		m_mainCharacterAnimation.ChangeAnimatorState ("jump", 1);
     }
 
-    private void Update               ()
+    private void Update()
     {
-        if (m_playerState == Character_State.FALL)
+        if (m_playerState == Character_State.JUMP)
         {
-            if (transform.position.y <= m_floorLevel) 
-		    {
-			    SetInGround ();
-		    }
-        }
-        else if (m_playerState == Character_State.JUMP)
-        {
+            Debug.Log("SALTE");
             if (m_rigidBody.linearVelocity.y < 0)
             {
+                // hace un chequeo rapido para que pueda saltar
+                FixedUpdate();
                 m_playerState = Character_State.FALL;
                 m_mainCharacterAnimation.ChangeAnimatorState("jump", 0);
                 m_mainCharacterAnimation.ChangeAnimatorState("fall", 1);
             }
         }
+        else if (m_playerState == Character_State.FALL)
+        {
+            if (transform.position.y <= m_floorLevel) 
+            {
+                SetInGround();
+            }
+        }
     }
 
-    private void FixedUpdate          ()
+    private void FixedUpdate()
     {
         if (m_playerState == Character_State.IDLE || m_playerState == Character_State.WALK || m_playerState == Character_State.JUMP)
         {
@@ -205,26 +208,24 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
             {
                 m_movementVector.y = 0;
             }
-
+            
             m_velocity = m_rigidBody.linearVelocity;
 
             float acceleration = (m_playerState != Character_State.JUMP) ? m_maxAcceleration : m_maxAirAcceleration;
             float maxSpeedChange = acceleration * Time.deltaTime;
-
+            
 		    m_velocity.x = Mathf.MoveTowards(m_velocity.x, m_movementVector.x, maxSpeedChange);
 		    m_velocity.y = Mathf.MoveTowards(m_velocity.y, m_movementVector.y, maxSpeedChange);
-
             if (m_desiredJump)
             {
-			    m_desiredJump  = false;
-			    Jump();
-		    }
-
+                m_desiredJump  = false;
+                Jump();
+            }
             m_rigidBody.linearVelocity = m_velocity;
 		}
     }
 
-    private void OnTriggerEnter2D     (Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<ITriggerObject>() != null)
         {

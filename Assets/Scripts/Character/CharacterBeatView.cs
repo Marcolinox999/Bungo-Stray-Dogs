@@ -27,4 +27,9 @@ public class CharacterBeatView : MonoBehaviour
 	{
 		m_animator.SetBool (variable, i);
 	}
+
+	public void PlayAnimatorOnce(string variable)
+	{
+		m_animator.Play (variable);
+	}
 }

@@ -60,6 +60,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         }
         else
         {
+            Debug.Log("OUCH!");
             m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 1);
             m_playerState = Character_State.HURT;
             m_rigidBody.linearVelocity = Vector2.zero;
@@ -169,7 +170,8 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
 
     private IEnumerator FinishHurtAnimationState() 
 	{
-        yield return new WaitForSeconds (0.3f); 
+        yield return new WaitForSeconds (0.3f);
+        Debug.Log("im better now :D");
         m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 0);
         m_playerState = Character_State.CHASE;
 	}
@@ -182,8 +184,9 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         { 
 			m_playerState = Character_State.ATTACK;
             m_rigidBody.linearVelocity = Vector2.zero; 
-
+            
             // Calcular si los enemigos reciben da�o. OverlapSphere
+            m_mainCharacterAnimation.PlayAnimatorOnce("Attack");
             Collider2D[] objects = Physics2D.OverlapBoxAll (m_hitAnchor.position, m_hitSize, 0);
 
             for (int i = 0; i < objects.Length; i++)
@@ -194,9 +197,9 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
                 }
             }
 		}
-
+        
         yield return new WaitForSeconds (1f); 
-        //m_mainCharacterAnimation.ChangeAnimatorState ("movingTransition", 0);
+        m_mainCharacterAnimation.ChangeAnimatorState ("movingTransition", 0);
         m_playerState      = Character_State.WAIT_TO_ATTACK;
         m_timeBeforeAttack = Random.Range (m_minTimeBeforeAttack, m_maxTimeBeforeAttack);
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 1);

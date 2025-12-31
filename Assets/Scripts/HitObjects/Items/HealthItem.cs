@@ -11,6 +11,7 @@ public class HealthItem : Item
         base.HitByPlayer(damage, player);
 
         m_player.AddHealth(m_health);
+        
     }
 
     public override void ExecuteAction ()

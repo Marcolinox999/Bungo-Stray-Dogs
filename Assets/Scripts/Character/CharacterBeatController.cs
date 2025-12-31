@@ -42,6 +42,8 @@ public class CharacterBeatController : MonoBehaviour
     public void AddHealth (int health)
     {
         m_currentLife += health;
+        float normalizedLife = m_currentLife*1f / m_maxLife*1f;
+        GameManager.Instance.PlayerHitted(normalizedLife);
     }
 
     protected void OnDrawGizmos ()

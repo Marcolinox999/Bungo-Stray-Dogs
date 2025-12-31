@@ -10,23 +10,20 @@ using UnityEngine;
 
 public class Item : MonoBehaviour, IHittableGameObjectByPlayer
 {
-    protected    string       m_itemName;
+    protected string m_itemName;
 
-    [SerializeField]
-    private    bool         m_expiresImmediately;
+    [SerializeField] private bool m_expiresImmediately;
 
-    [SerializeField]
-    private    int          m_expiresWithTime;
+    [SerializeField] private int m_expiresWithTime;
 
-    [SerializeField]
-    private    AudioSource  m_sfx;
+    [SerializeField] private AudioSource m_sfx;
 
     protected CharacterBeatController m_player;
 
-    private   float         m_counterTime = 0;
-    private   bool          m_enterActionDone = false;
+    private float m_counterTime = 0;
+    private bool m_enterActionDone = false;
 
-    public         void HitByPlayer   (float damage, CharacterBeatController player)
+    public void HitByPlayer (float damage, CharacterBeatController player)
     {
         m_player = player;
 
@@ -59,12 +56,11 @@ public class Item : MonoBehaviour, IHittableGameObjectByPlayer
         m_enterActionDone = false;
     }
 
-    private        void Update        ()
+    private void Update ()
     {
         if (m_enterActionDone && !m_expiresImmediately && m_expiresWithTime > 0)
         {
             m_counterTime += Time.deltaTime;
-
             if (m_counterTime < m_expiresWithTime)
             {
                 ExecuteAction();

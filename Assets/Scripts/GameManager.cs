@@ -47,6 +47,11 @@ public class GameManager : MonoBehaviour
         m_ui.SetPlayerLife(normalizedLife);
     }
 
+    public void PlayerHealed(float normalizedLife)
+    {
+        m_ui.SetPlayerLife(normalizedLife);
+    }
+
     private void FinishStage ()
     {
         Debug.Log("FINISH!!");

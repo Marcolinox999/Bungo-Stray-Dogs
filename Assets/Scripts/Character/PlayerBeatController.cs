@@ -95,6 +95,11 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
                 {
                     objects[i].GetComponent<IHittableGameObjectByPlayer>().HitByPlayer(m_damagePerHit, this);
                 }
+                if ((objects[i].GetComponent<HealthItem>() != null))
+                {
+                    objects[i].GetComponent<HealthItem>().HitByPlayer(m_damagePerHit, this);
+                    
+                }
             }
 
             StartCoroutine ("FinishAttackAnimationState");
@@ -167,7 +172,8 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
     {
         m_floorLevel = transform.position.y - 0.00001f;
 		m_rigidBody.gravityScale = 1;
-        m_velocity.y += Mathf.Sqrt(-2f * Physics.gravity.y * m_jumpHeight);
+        
+        m_jumpVelocity.y = Mathf.Sqrt(-2f * Physics.gravity.y * m_jumpHeight);
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 0); 
 		m_mainCharacterAnimation.ChangeAnimatorState ("jump", 1);
     }
@@ -176,11 +182,11 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
     {
         if (m_playerState == Character_State.JUMP)
         {
+            FixedUpdate();
             Debug.Log("SALTE");
-            if (m_rigidBody.linearVelocity.y < 0)
+            if (m_rigidBody.linearVelocity.y < 0 && m_jumpVelocity.y == 0)
             {
                 // hace un chequeo rapido para que pueda saltar
-                FixedUpdate();
                 m_playerState = Character_State.FALL;
                 m_mainCharacterAnimation.ChangeAnimatorState("jump", 0);
                 m_mainCharacterAnimation.ChangeAnimatorState("fall", 1);
@@ -222,7 +228,9 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
                 Jump();
             }
             m_rigidBody.linearVelocity = m_velocity;
-		}
+            m_rigidBody.AddForceY(m_jumpVelocity.y, ForceMode2D.Impulse);
+            m_jumpVelocity = Vector2.zero;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

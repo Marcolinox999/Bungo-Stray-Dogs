@@ -6,24 +6,29 @@ using UnityEngine.VFX;
 
 public class PoisonZone : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer m_playerSpriteRenderer;
-    [SerializeField] CharacterBeatController m_player;
+    private GameObject m_player;
     public int damage;
     private bool isPoison = true;
+
+    private void Awake()
+    {
+        m_player = GameObject.FindGameObjectWithTag("Player");
+        m_player.GetComponent<SpriteRenderer>().color = Color.white;
+    }
     public IEnumerator Poison(int poisonTimes, float poisonDelay)
     {
         if (isPoison)
         {
-            m_playerSpriteRenderer.color = Color.gray;
+            m_player.GetComponent<SpriteRenderer>().color = Color.gray;
             Debug.Log("Poison damage");
             isPoison = false;
             for (int i = 0; i < poisonTimes; i++)
             {
                 yield return new WaitForSeconds(poisonDelay);
-                m_player.AddHealth(damage);
+                m_player.GetComponent<CharacterBeatController>().AddHealth(damage);
             }
             isPoison = true;
-            m_playerSpriteRenderer.color = Color.white;
+            m_player.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 

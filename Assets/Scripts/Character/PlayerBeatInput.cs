@@ -7,6 +7,7 @@ public class PlayerBeatInput : MonoBehaviour
     [SerializeField] private KeyCode m_jumpButton;
 
     [SerializeField] private KeyCode m_attackButton;
+    [SerializeField] private KeyCode m_blockButton;
 
     private PlayerBeatController m_mainCharacter;
     private Vector2 m_movementVector;
@@ -30,6 +31,10 @@ public class PlayerBeatInput : MonoBehaviour
 		else if (Input.GetKeyDown (m_attackButton))
 		{
 			m_mainCharacter.AttackAction ();
+		}
+		else if (Input.GetKeyDown(m_blockButton))
+		{
+			m_mainCharacter.BlockAction ();
 		}
     }
 }

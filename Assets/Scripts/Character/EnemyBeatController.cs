@@ -68,7 +68,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         }
     }
 
-    public void Stop          ()
+    public void Stop()
     {
         this.enabled = false;
     }
@@ -200,7 +200,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         
         yield return new WaitForSeconds (1f); 
         m_mainCharacterAnimation.ChangeAnimatorState ("movingTransition", 0);
-        m_playerState      = Character_State.WAIT_TO_ATTACK;
+        m_playerState = Character_State.WAIT_TO_ATTACK;
         m_timeBeforeAttack = Random.Range (m_minTimeBeforeAttack, m_maxTimeBeforeAttack);
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 1);
         Debug.Log("Finish Attack");

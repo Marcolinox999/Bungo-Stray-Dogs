@@ -9,7 +9,7 @@ using UnityEngine;
 
 public class PlayerBeatController : CharacterBeatController, IHittableGameObjectByEnemy
 {
-    private enum Character_State { IDLE, WALK, JUMP, ATTACK, FALL, HURT, DIE}
+    private enum Character_State { IDLE, WALK, JUMP, ATTACK, FALL, HURT, DIE, BLOCK}
 
     private Rigidbody2D            m_rigidBody;
     private CharacterBeatView      m_mainCharacterAnimation;
@@ -22,10 +22,12 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
 
     [SerializeField, Range(0f, 3f)]
     protected float m_timeToFinishAttackAnimation;
+    [SerializeField, Range(0f, 3f)]
+    protected float m_timeToFinishBlockAnimation;
 
     [SerializeField, Range(0f, 3f)]
     protected float m_timeToFinishHurtAnimation;
-
+    public bool canBeDamaged = true;
     private void Awake() 
 	{
         m_rigidBody              = GetComponent<Rigidbody2D> ();
@@ -108,38 +110,43 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
 
     public void HitByEnemy (float damage, CharacterBeatController player)
     {
-        if (m_playerState == Character_State.ATTACK)
+        if (canBeDamaged == true)
         {
-            return;
-        }
-        else if (m_playerState == Character_State.FALL || m_playerState == Character_State.JUMP)
-        {
-            SetInGround ();
-        }
 
-        m_currentLife -= (int)damage;
-        float normalizedLife = m_currentLife*1f / m_maxLife*1f;
-        GameManager.Instance.PlayerHitted(normalizedLife);
 
-        if (m_currentLife < 0) // Die
-        {
-            m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 2);
-            m_playerState = Character_State.DIE;
-            m_rigidBody.linearVelocity = Vector2.zero;
-            GameManager.Instance.GameOver();
-            StopAllCoroutines();
-        }
-        else // Take hit
-        {
-            if (m_playerState == Character_State.FALL)
+            if (m_playerState == Character_State.ATTACK)
             {
-                SetInGround ();
+                return;
+            }
+            else if (m_playerState == Character_State.FALL || m_playerState == Character_State.JUMP)
+            {
+                SetInGround();
             }
 
-            m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 1);
-            m_playerState = Character_State.HURT;
-            m_rigidBody.linearVelocity = Vector2.zero;
-            StartCoroutine("FinishHurtAnimationState");
+            m_currentLife -= (int)damage;
+            float normalizedLife = m_currentLife * 1f / m_maxLife * 1f;
+            GameManager.Instance.PlayerHitted(normalizedLife);
+
+            if (m_currentLife < 0) // Die
+            {
+                m_mainCharacterAnimation.ChangeAnimatorState("hurt", 2);
+                m_playerState = Character_State.DIE;
+                m_rigidBody.linearVelocity = Vector2.zero;
+                GameManager.Instance.GameOver();
+                StopAllCoroutines();
+            }
+            else // Take hit
+            {
+                if (m_playerState == Character_State.FALL)
+                {
+                    SetInGround();
+                }
+
+                m_mainCharacterAnimation.ChangeAnimatorState("hurt", 1);
+                m_playerState = Character_State.HURT;
+                m_rigidBody.linearVelocity = Vector2.zero;
+                StartCoroutine("FinishHurtAnimationState");
+            }
         }
     }
 
@@ -149,6 +156,14 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         m_mainCharacterAnimation.ChangeAnimatorState ("attack", 0);
         m_playerState = Character_State.IDLE;
 	}
+    private IEnumerator FinishBlockAnimationState() 
+    {
+        yield return new WaitForSeconds (m_timeToFinishBlockAnimation); 
+        canBeDamaged = true;
+        Debug.Log("Finish Block");
+        m_mainCharacterAnimation.ChangeAnimatorState ("block", 0);
+        m_playerState = Character_State.IDLE;
+    }
 
     private IEnumerator FinishHurtAnimationState() 
 	{
@@ -238,6 +253,18 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         if (other.GetComponent<ITriggerObject>() != null)
         {
             other.GetComponent<ITriggerObject>().TriggerByPlayer(this);
+        }
+    }
+    public void BlockAction() 
+    {
+        if (m_playerState == Character_State.IDLE || m_playerState == Character_State.WALK)
+        {
+            Debug.Log("Block");
+            m_playerState = Character_State.BLOCK;
+            m_rigidBody.linearVelocity = Vector2.zero; 
+            m_mainCharacterAnimation.ChangeAnimatorState ("block", 1);
+            canBeDamaged = false;
+            StartCoroutine ("FinishBlockAnimationState");
         }
     }
 }

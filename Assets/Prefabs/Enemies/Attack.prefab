@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c9a306e3d92408488fd32fdeb833566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  speed: 0
+  speed: 1
   patrolPath: {fileID: 1303131667867206096}
 --- !u!61 &6856241879570709823
 BoxCollider2D:
@@ -230,8 +230,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c725caa592ff6b4a9627ca17ca7493d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonZone
-  m_playerSpriteRenderer: {fileID: 5271433855821122648, guid: b90c3bd215849504f9603925a97a4caa,
-    type: 3}
-  m_player: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
-    type: 3}
   damage: -20

@@ -612,6 +612,11 @@ PrefabInstance:
       propertyPath: m_bottomAnchor
       value: 
       objectReference: {fileID: 2033601988}
+    - target: {fileID: 5271433855821122642, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_timeToFinishBlockAnimation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122643, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
       propertyPath: m_Name
@@ -676,6 +681,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_jumpButton
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271433855821122652, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
+      propertyPath: m_blockButton
+      value: 101
       objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}

@@ -9,12 +9,14 @@ public class SpawnerAttack : MonoBehaviour
     [SerializeField] GameObject m_projectile;
     [SerializeField] GameObject[] m_spawn;
     [SerializeField] private float spawnTime;
+    [SerializeField] Animator  animator;
     private Random m_spawnPointRandom;
     private bool m_spawned = false;
     private IEnumerator SpawnProjectile()
     {
         if (m_spawned == false)
         {
+            animator.Play("Attack");   
             m_spawned = true;
             yield return new WaitForSeconds(spawnTime);
             int selectedPointRandom = UnityEngine.Random.Range(0, m_spawn.Length);

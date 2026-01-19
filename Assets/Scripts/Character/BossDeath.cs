@@ -15,7 +15,7 @@ public class BossDeath : MonoBehaviour
     private IEnumerator Bossdeath()
     {
         yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     private void Update()

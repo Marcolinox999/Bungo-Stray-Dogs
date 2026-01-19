@@ -1702,7 +1702,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2071188740}
         m_TargetAssemblyTypeName: ButtonsMenu, Assembly-CSharp
-        m_MethodName: TryAgain
+        m_MethodName: OnPlayButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

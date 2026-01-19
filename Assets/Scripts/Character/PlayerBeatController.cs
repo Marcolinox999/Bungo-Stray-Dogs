@@ -28,6 +28,9 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
     [SerializeField, Range(0f, 3f)]
     protected float m_timeToFinishHurtAnimation;
     public bool canBeDamaged = true;
+    
+    [SerializeField] private AudioClip m_hitSound;
+    [SerializeField] private AudioClip m_punchSound;
     private void Awake() 
 	{
         m_rigidBody              = GetComponent<Rigidbody2D> ();
@@ -102,6 +105,11 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
                     objects[i].GetComponent<HealthItem>().HitByPlayer(m_damagePerHit, this);
                     
                 }
+
+                if (m_punchSound != null)
+                {
+                    AudioManager.instance.PlaySFX(m_punchSound);
+                }
             }
 
             StartCoroutine ("FinishAttackAnimationState");
@@ -145,6 +153,11 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
                 m_mainCharacterAnimation.ChangeAnimatorState("hurt", 1);
                 m_playerState = Character_State.HURT;
                 m_rigidBody.linearVelocity = Vector2.zero;
+                if (m_hitSound != null)
+                {
+                    AudioManager.instance.PlaySFX(m_hitSound);
+                }
+
                 StartCoroutine("FinishHurtAnimationState");
             }
         }

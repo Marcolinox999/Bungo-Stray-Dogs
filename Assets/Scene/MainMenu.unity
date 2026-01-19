@@ -1030,8 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65860a07035e1a4b9cabd52fcd20e77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  musicSource: {fileID: 0}
-  sfxSource: {fileID: 0}
+  musicSource: {fileID: 153607195}
+  sfxSource: {fileID: 647839925}
 --- !u!4 &1147221803
 Transform:
   m_ObjectHideFlags: 0

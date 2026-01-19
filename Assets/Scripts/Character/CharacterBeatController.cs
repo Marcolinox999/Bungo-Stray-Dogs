@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterBeatController : MonoBehaviour
 {
-    [SerializeField, Range(0f, 100f)] protected int   m_maxLife;
+    [SerializeField, Range(0f, 700f)] public int   m_maxLife;
     
     [SerializeField, Range(0f, 100f)] public int   m_damagePerHit;
     

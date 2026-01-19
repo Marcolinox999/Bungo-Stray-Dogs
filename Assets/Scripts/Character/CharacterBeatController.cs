@@ -32,7 +32,7 @@ public class CharacterBeatController : MonoBehaviour
 
     [SerializeField] protected Transform m_rightLimit;
 
-    [SerializeField] protected int m_currentLife;
+    [SerializeField] public int m_currentLife;
 
     protected void Awake () 
 	{

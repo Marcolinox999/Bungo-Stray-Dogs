@@ -201,7 +201,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3350535436075241742, guid: cbcb6df0695c90c499295f520537926b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1365194057}
   m_SourcePrefab: {fileID: 100100000, guid: cbcb6df0695c90c499295f520537926b, type: 3}
 --- !u!1 &145057494
 GameObject:
@@ -2264,6 +2268,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 144365886}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365194057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365194051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9871a8cf3bc9c894287cf062e17b322b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossDeath
 --- !u!1001 &1446835293
 PrefabInstance:
   m_ObjectHideFlags: 0

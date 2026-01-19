@@ -14,16 +14,15 @@ public class BossDeath : MonoBehaviour
 
     private IEnumerator Bossdeath()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
 
     private void Update()
     {
-        if (boss.GetComponent<CharacterBeatController>().m_maxLife == 0)
+        if(boss.GetComponent<EnemyBeatController>().m_currentLife <= 0)
         {
             StartCoroutine(Bossdeath());
         }
-        
-    }
+}
 }

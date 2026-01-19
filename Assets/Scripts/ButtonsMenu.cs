@@ -6,21 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonsMenu : MonoBehaviour
 {
-  public void TryAgain()
+  
+  public void OnPlayButton()
   {
-    SceneManager.LoadScene(0);
+    SceneManager.LoadScene(1);
   }
 
-  public void Start()
-  {
-    SceneManager.LoadScene(0);
-  }
-
-  public void Exit()
+  public void OnExitButton()
   {
     Application.Quit();
   }
-
   private void Update()
   {
    

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -29,6 +30,8 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
     private GameObject             m_targetPosition;
     private float                  m_counterWaitingAttack;
     private float                  m_timeBeforeAttack;
+    
+    private Color                  m_initialColor;
 
     private void Start        ()
     {
@@ -38,6 +41,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 1);
         GameManager.Instance.AddEnemy(this);
         m_targetPosition = GameManager.Instance.m_player;
+        m_initialColor = GetComponent<SpriteRenderer> ().color;
     }
 
     public void HitByPlayer   (float damage, CharacterBeatController player)
@@ -111,6 +115,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
 		    }
             else
             {
+                GetComponent<SpriteRenderer>().color = Color.purple;
                 MoveAction (new Vector2(0, 0));
                 m_playerState  = Character_State.ATTACK;
                 StartCoroutine ("Attack");
@@ -181,6 +186,8 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
 	{
         Debug.Log("Start Attack");
         m_mainCharacterAnimation.ChangeAnimatorState ("moving", 0);
+        yield return new WaitForSeconds (0.5f);
+        GetComponent<SpriteRenderer>().color = m_initialColor;
         if (!m_isDead)
         { 
 			m_playerState = Character_State.ATTACK;
@@ -189,7 +196,6 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
             // Calcular si los enemigos reciben da�o. OverlapSphere
             m_mainCharacterAnimation.PlayAnimatorOnce("Attack");
             Collider2D[] objects = Physics2D.OverlapBoxAll (m_hitAnchor.position, m_hitSize, 0);
-
             for (int i = 0; i < objects.Length; i++)
             {
                 if (objects[i].GetComponent<IHittableGameObjectByEnemy>() != null)

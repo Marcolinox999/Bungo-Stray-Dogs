@@ -126,17 +126,22 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 299862009}
     m_Modifications:
     - target: {fileID: 3350535436075241742, guid: cbcb6df0695c90c499295f520537926b,
         type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 3350535436075241742, guid: cbcb6df0695c90c499295f520537926b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3350535436075241847, guid: cbcb6df0695c90c499295f520537926b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.125
+      value: -0.4949999
       objectReference: {fileID: 0}
     - target: {fileID: 3350535436075241847, guid: cbcb6df0695c90c499295f520537926b,
         type: 3}
@@ -183,26 +188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6664324808882671041, guid: cbcb6df0695c90c499295f520537926b,
-        type: 3}
-      propertyPath: m_Name
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6679717926863534742, guid: cbcb6df0695c90c499295f520537926b,
         type: 3}
-      propertyPath: m_projectile
-      value: 
-      objectReference: {fileID: 5873657252810217972, guid: bdb61083edd5d874aafe668b88e9dec3,
-        type: 3}
-    - target: {fileID: 6689645446793275313, guid: cbcb6df0695c90c499295f520537926b,
-        type: 3}
-      propertyPath: m_Name
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8478453899723225374, guid: cbcb6df0695c90c499295f520537926b,
-        type: 3}
-      propertyPath: m_Name
-      value: 1
+      propertyPath: spawnTime
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -443,6 +432,99 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &299862006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299862009}
+  - component: {fileID: 299862007}
+  - component: {fileID: 299862010}
+  m_Layer: 0
+  m_Name: Boss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &299862007
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299862006}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -2.0686896, y: -0.69528806}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.6704755, y: 0.8536236}
+  m_EdgeRadius: 0
+--- !u!4 &299862009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299862006}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.62, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1365194056}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &299862010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299862006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a113f4fae821a84496d477f1818c58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnBoss
+  boss: {fileID: 1365194051}
 --- !u!1001 &344343699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -779,12 +861,12 @@ PrefabInstance:
     - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
       propertyPath: m_Size.x
-      value: 0.12
+      value: 0.21
       objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.09
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
@@ -793,8 +875,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5271433855821122654, guid: b90c3bd215849504f9603925a97a4caa,
+        type: 3}
       propertyPath: m_Offset.y
-      value: -0.23
+      value: -0.18
       objectReference: {fileID: 0}
     - target: {fileID: 5271433855821122655, guid: b90c3bd215849504f9603925a97a4caa,
         type: 3}
@@ -2036,6 +2123,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1311497667}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1365194051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3350535436075241742, guid: cbcb6df0695c90c499295f520537926b,
+    type: 3}
+  m_PrefabInstance: {fileID: 144365886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1365194056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3350535436075241847, guid: cbcb6df0695c90c499295f520537926b,
+    type: 3}
+  m_PrefabInstance: {fileID: 144365886}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1479327293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2262,7 +2361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c725caa592ff6b4a9627ca17ca7493d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PoisonZone
-  damage: -20
+  damage: 20
 --- !u!61 &1618698283
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3185,10 +3284,10 @@ SceneRoots:
   - {fileID: 1178351749}
   - {fileID: 794743850}
   - {fileID: 1186026543}
+  - {fileID: 299862009}
   - {fileID: 194946146}
   - {fileID: 1504621088}
   - {fileID: 1929666582}
   - {fileID: 294965241}
   - {fileID: 1618698285}
-  - {fileID: 144365886}
   - {fileID: 939804598}

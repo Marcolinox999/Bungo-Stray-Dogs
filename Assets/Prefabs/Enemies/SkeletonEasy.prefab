@@ -215,7 +215,7 @@ MonoBehaviour:
   m_maxAirAcceleration: 1
   m_jumpHeight: 2
   m_bottomAnchor: {fileID: 4376560673133740529}
-  m_hitSize: {x: 0.34, y: 0.41}
+  m_hitSize: {x: 0.36, y: 0.41}
   m_hitAnchor: {fileID: 4376560675108315618}
   m_topLimit: {fileID: 0}
   m_bottomLimit: {fileID: 0}
@@ -346,7 +346,7 @@ Transform:
   m_GameObject: {fileID: 4376560675108315619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.361, y: 0, z: 0}
+  m_LocalPosition: {x: 0.077, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

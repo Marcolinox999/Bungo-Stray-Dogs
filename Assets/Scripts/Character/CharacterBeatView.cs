@@ -12,6 +12,7 @@ public class CharacterBeatView : MonoBehaviour
     public string m_name;
 
     private Animator m_animator;
+    [SerializeField] Animator altAnimator;
 
     private void Awake()
     {
@@ -23,6 +24,15 @@ public class CharacterBeatView : MonoBehaviour
 		m_animator.SetInteger (variable, i);
 	}
 
+	public void ChangeAltAnimatorState(string variable, int i)
+	{
+		altAnimator.SetInteger (variable, i);
+	}
+
+	public void PlayOnceAltAnimator(string variable)
+	{
+		altAnimator.Play(variable);
+	}
     public void ChangeAnimatorState  (string variable, bool i) 
 	{
 		m_animator.SetBool (variable, i);

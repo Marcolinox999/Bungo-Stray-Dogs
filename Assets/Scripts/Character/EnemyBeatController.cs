@@ -62,6 +62,7 @@ public class EnemyBeatController : CharacterBeatController, IHittableGameObjectB
         {
             Debug.Log("OUCH!");
             m_mainCharacterAnimation.ChangeAnimatorState ("hurt", 1);
+            m_mainCharacterAnimation.PlayOnceAltAnimator("Hit");
             m_playerState = Character_State.HURT;
             m_rigidBody.linearVelocity = Vector2.zero;
             StartCoroutine("FinishHurtAnimationState");

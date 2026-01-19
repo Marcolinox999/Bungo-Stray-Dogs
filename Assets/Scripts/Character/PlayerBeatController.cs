@@ -162,6 +162,7 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         canBeDamaged = true;
         Debug.Log("Finish Block");
         m_mainCharacterAnimation.ChangeAnimatorState ("block", 0);
+        m_mainCharacterAnimation.ChangeAltAnimatorState("shield", 0);
         m_playerState = Character_State.IDLE;
     }
 
@@ -261,8 +262,9 @@ public class PlayerBeatController : CharacterBeatController, IHittableGameObject
         {
             Debug.Log("Block");
             m_playerState = Character_State.BLOCK;
+            m_mainCharacterAnimation.ChangeAltAnimatorState("shield", 1);
             m_rigidBody.linearVelocity = Vector2.zero; 
-            m_mainCharacterAnimation.ChangeAnimatorState ("block", 1);
+            m_mainCharacterAnimation.ChangeAnimatorState("block", 1);
             canBeDamaged = false;
             StartCoroutine ("FinishBlockAnimationState");
         }
